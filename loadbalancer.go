@@ -1,13 +1,13 @@
 package main
 
 import (
+	"flag"
 	"github.com/bborbe/loadbalancer/server"
 	"log"
-	"flag"
-	"strings"
-	"strconv"
-	"os/signal"
 	"os"
+	"os/signal"
+	"strconv"
+	"strings"
 	"syscall"
 )
 
@@ -22,7 +22,7 @@ func main() {
 		flag.Usage()
 		return
 	}
-	srv, err := server.NewServer(":" + strconv.Itoa(port), nodes)
+	srv, err := server.NewServer(":"+strconv.Itoa(port), nodes)
 	if err != nil {
 		log.Print("create server failed, %v", err)
 		return

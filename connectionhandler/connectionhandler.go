@@ -1,10 +1,10 @@
 package connectionhandler
 
 import (
-	"net"
-	"log"
-	"io"
 	"github.com/bborbe/loadbalancer/scheduler"
+	"io"
+	"log"
+	"net"
 )
 
 type ConnectionHandler interface {
@@ -15,7 +15,7 @@ type connectionhandler struct {
 	scheduler scheduler.Scheduler
 }
 
-func NewConnectionHandler( scheduler scheduler.Scheduler ) *connectionhandler {
+func NewConnectionHandler(scheduler scheduler.Scheduler) *connectionhandler {
 	c := new(connectionhandler)
 	c.scheduler = scheduler
 	return c
@@ -33,8 +33,8 @@ func (c *connectionhandler) HandleConnection(clientConn net.Conn) {
 	defer serverConn.Close()
 
 	done := make(chan bool, 2)
-	go copyChan("client->server",clientConn, serverConn, done)
-	go copyChan("server->client",serverConn, clientConn, done)
+	go copyChan("client->server", clientConn, serverConn, done)
+	go copyChan("server->client", serverConn, clientConn, done)
 	<-done
 	<-done
 	log.Print("process connection finished")
@@ -46,4 +46,3 @@ func copyChan(name string, input net.Conn, output net.Conn, done chan bool) {
 	log.Printf("%s copyChan finished", name)
 	done <- true
 }
-

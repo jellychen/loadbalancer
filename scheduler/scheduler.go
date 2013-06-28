@@ -10,7 +10,7 @@ type Scheduler interface {
 }
 
 type scheduler struct {
-	next <- chan string
+	next <-chan string
 }
 
 func NewScheduler(nodes []string) (*scheduler, error) {

@@ -1,8 +1,8 @@
 package scheduler
 
 import (
-	"testing"
 	. "github.com/bborbe/assert"
+	"testing"
 )
 
 func TestImplements(t *testing.T) {
@@ -36,23 +36,23 @@ func TestNewSchedulerThrowErrorWithoutNodes(t *testing.T) {
 }
 
 func TestNext(t *testing.T) {
-	scheduler, err := NewScheduler([]string{"a","b","c"})
+	scheduler, err := NewScheduler([]string{"a", "b", "c"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = AssertThat(scheduler.Next(),Is("a"))
+	err = AssertThat(scheduler.Next(), Is("a"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = AssertThat(scheduler.Next(),Is("b"))
+	err = AssertThat(scheduler.Next(), Is("b"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = AssertThat(scheduler.Next(),Is("c"))
+	err = AssertThat(scheduler.Next(), Is("c"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = AssertThat(scheduler.Next(),Is("a"))
+	err = AssertThat(scheduler.Next(), Is("a"))
 	if err != nil {
 		t.Fatal(err)
 	}
