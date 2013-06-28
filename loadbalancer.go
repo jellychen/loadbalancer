@@ -6,6 +6,9 @@ import (
 	"flag"
 	"strings"
 	"strconv"
+	"os/signal"
+	"os"
+	"syscall"
 )
 
 func main() {
@@ -31,15 +34,21 @@ func main() {
 			return
 		}
 	}
-	srv.Wait()
-	{
+
+	ch := make(chan os.Signal)
+	signal.Notify(ch, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
+	for {
+		sig := <-ch
+		log.Printf("receive signal %v", sig)
+
 		err := srv.Stop()
 		if err != nil {
 			log.Print("stop server failed, %v", err)
 			return
 		}
+		log.Print("loadbalancer finished")
+		return
 	}
-	log.Print("loadbalancer finished")
 }
 
 func splitNodes(content string) []string {
