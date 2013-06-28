@@ -1,11 +1,11 @@
 package server
 
 import (
-	"github.com/bborbe/loadbalancer/connectionhandler"
 	"errors"
+	"github.com/bborbe/loadbalancer/connectionhandler"
+	"github.com/bborbe/loadbalancer/scheduler"
 	"log"
 	"net"
-	"github.com/bborbe/loadbalancer/scheduler"
 )
 
 type Server interface {
