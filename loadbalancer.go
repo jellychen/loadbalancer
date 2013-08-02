@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/bborbe/loadbalancer/server"
-	"log"
+	"github.com/bborbe/log"
 	"os"
 	"os/signal"
 	"strconv"
@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	log.Print("loadbalancer started")
+	logger.Debug("loadbalancer started")
 	portPtr := flag.Int("port", 8081, "ListenPort")
 	nodesPtr := flag.String("nodes", "", "NodeList")
 	flag.Parse()
@@ -24,13 +24,13 @@ func main() {
 	}
 	srv, err := server.NewServer(":"+strconv.Itoa(port), nodes)
 	if err != nil {
-		log.Print("create server failed, %v", err)
+		logger.Debug("create server failed, %v", err)
 		return
 	}
 	{
 		err := srv.Start()
 		if err != nil {
-			log.Print("start server failed, %v", err)
+			logger.Debug("start server failed, %v", err)
 			return
 		}
 	}
@@ -39,14 +39,14 @@ func main() {
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
 	for {
 		sig := <-ch
-		log.Printf("receive signal %v", sig)
+		logger.Debugf("receive signal %v", sig)
 
 		err := srv.Stop()
 		if err != nil {
-			log.Print("stop server failed, %v", err)
+			logger.Debug("stop server failed, %v", err)
 			return
 		}
-		log.Print("loadbalancer finished")
+		logger.Debug("loadbalancer finished")
 		return
 	}
 }

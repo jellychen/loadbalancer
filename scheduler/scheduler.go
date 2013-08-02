@@ -2,8 +2,10 @@ package scheduler
 
 import (
 	"errors"
-	"log"
+	"github.com/bborbe/log"
 )
+
+var logger = log.DefaultLogger
 
 type Scheduler interface {
 	Next() string
@@ -23,7 +25,7 @@ func NewScheduler(nodes []string) (*scheduler, error) {
 	c := make(chan string)
 	go func() {
 		for {
-			log.Printf("next node pos: %d", i)
+			logger.Debugf("next node pos: %d", i)
 			c <- nodes[i]
 			i += 1
 			if i == l {

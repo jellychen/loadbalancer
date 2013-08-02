@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/bborbe/loadbalancer/connectionhandler"
 	"github.com/bborbe/loadbalancer/scheduler"
-	"log"
+	"github.com/bborbe/log"
 	"net"
 )
 
@@ -46,7 +46,7 @@ func (s *server) Start() error {
 			if s.listener != nil {
 				conn, err := l.Accept()
 				if err != nil {
-					log.Print(err)
+					logger.Debug(err)
 					continue
 				}
 				go s.connectionHandler.HandleConnection(conn)
