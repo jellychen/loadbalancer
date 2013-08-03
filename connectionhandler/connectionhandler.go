@@ -7,6 +7,8 @@ import (
 	"net"
 )
 
+var logger = log.DefaultLogger
+
 type ConnectionHandler interface {
 	HandleConnection(conn net.Conn)
 }

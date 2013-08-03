@@ -8,6 +8,8 @@ import (
 	"net"
 )
 
+var logger = log.DefaultLogger
+
 type Server interface {
 	Start() error
 	Stop() error
