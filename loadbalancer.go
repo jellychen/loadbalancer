@@ -11,6 +11,8 @@ import (
 	"syscall"
 )
 
+var logger = log.DefaultLogger
+
 func main() {
 	logger.Debug("loadbalancer started")
 	portPtr := flag.Int("port", 8081, "ListenPort")
@@ -24,13 +26,13 @@ func main() {
 	}
 	srv, err := server.NewServer(":"+strconv.Itoa(port), nodes)
 	if err != nil {
-		logger.Debug("create server failed, %v", err)
+		logger.Debugf("create server failed, %v", err)
 		return
 	}
 	{
 		err := srv.Start()
 		if err != nil {
-			logger.Debug("start server failed, %v", err)
+			logger.Debugf("start server failed, %v", err)
 			return
 		}
 	}
@@ -43,7 +45,7 @@ func main() {
 
 		err := srv.Stop()
 		if err != nil {
-			logger.Debug("stop server failed, %v", err)
+			logger.Debugf("stop server failed, %v", err)
 			return
 		}
 		logger.Debug("loadbalancer finished")
