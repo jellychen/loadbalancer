@@ -14,6 +14,7 @@ import (
 var logger = log.DefaultLogger
 
 func main() {
+	defer logger.Close()
 	logger.Debug("loadbalancer started")
 	portPtr := flag.Int("port", 8081, "ListenPort")
 	nodesPtr := flag.String("nodes", "", "NodeList")
