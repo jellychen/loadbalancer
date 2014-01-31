@@ -8,6 +8,11 @@ Documentation
 
 http://godoc.org/github.com/bborbe/loadbalancer
 
+Continuous integration
+----------------------
+
+http://jenkins.benjamin-borbe.de/job/Go-Loadbalancer/
+
 Copyright and license
 ---------------------
 
