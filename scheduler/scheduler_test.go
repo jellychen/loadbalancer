@@ -1,8 +1,8 @@
 package scheduler
 
 import (
-	. "github.com/bborbe/assert"
 	"testing"
+	. "github.com/bborbe/assert"
 )
 
 func TestImplements(t *testing.T) {

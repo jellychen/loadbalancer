@@ -1,10 +1,11 @@
 package connectionhandler
 
 import (
-	"github.com/bborbe/loadbalancer/scheduler"
-	"github.com/bborbe/log"
 	"io"
 	"net"
+
+	"github.com/bborbe/loadbalancer/scheduler"
+	"github.com/bborbe/log"
 )
 
 var logger = log.DefaultLogger

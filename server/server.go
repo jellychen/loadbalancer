@@ -2,10 +2,11 @@ package server
 
 import (
 	"errors"
+	"net"
+
 	"github.com/bborbe/loadbalancer/connectionhandler"
 	"github.com/bborbe/loadbalancer/scheduler"
 	"github.com/bborbe/log"
-	"net"
 )
 
 var logger = log.DefaultLogger

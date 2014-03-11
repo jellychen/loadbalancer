@@ -2,13 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/bborbe/loadbalancer/server"
-	"github.com/bborbe/log"
 	"os"
 	"os/signal"
 	"strconv"
 	"strings"
 	"syscall"
+
+	"github.com/bborbe/loadbalancer/server"
+	"github.com/bborbe/log"
 )
 
 var logger = log.DefaultLogger
